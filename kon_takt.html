@@ -108,7 +108,8 @@
 <div class="feld">
   <button class="close-button" onclick="parent.postMessage({ type: 'closeForm' }, '*')">×</button>
 
-  <form>
+  <form action="https://formsubmit.co/kontakt@broda.at" method="POST" enctype="multipart/form-data">
+
     <input type="text" name="name" placeholder="Ich" required>
     <input type="email" name="email" placeholder="e-mail" required>
 
@@ -140,6 +141,9 @@
     </label>
 
     <button type="submit">move</button>
+	<!-- Bot-Schutz und Redirect -->
+<input type="hidden" name="_gotcha" style="display:none">
+<input type="hidden" name="_next" value="https://broda.at/danke.html">
   </form>
 </div>
 
