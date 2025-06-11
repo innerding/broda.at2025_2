@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Visitenkarte – broda.at</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Open+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Open Sans', sans-serif;
+	  font-size: 18px;
+      background: transparent;
+      overflow: visible;‚
+    }
+
+    .scene {
+      width: 100%;
+      height: 100%;
+      perspective: 1000px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+	  overflow: visible;
+    }
+
+    .karte {
+      aspect-ratio: 5 / 3.4; /* Oder 16 / 9, 4 / 3 etc. */
+      width: 90%;
+      height: auto;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease;
+      cursor: pointer;
+      border-radius: 16px;
+      box-shadow: 0 0px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .karte.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .seite {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      background: white;
+      padding: 2em;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      backface-visibility: hidden;
+    }
+
+    .vorderseite {
+      z-index: 2;
+    }
+
+    .rueckseite {
+      transform: rotateY(180deg);
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-size: clamp(0.9em, 1.5vw, 1.1em);
+    }
+
+    .name {
+      font-family: 'Lora', serif;
+      font-size: clamp(2em, 4vw, 3em);
+      margin-bottom: 0.3em;
+      text-align: center;
+    }
+
+    .titel {    
+      font-size: clamp(1.15em, 2.5vw, 1.7em);
+      margin-bottom: 1.5em;
+      text-align: center;
+    }
+
+    .kontakt {
+      font-size: clamp(1em, 2vw, 1.3em);
+      color: #444;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .kontakt a {
+      color: #ffa366;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .kontakt a:hover {
+      transform: scale(1.08);
+    }
+
+    .spalte {
+      width: 45%;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .spalte.links {
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .spalte.rechts {
+      text-align: right;
+    }
+  </style>
+  <link rel="stylesheet" href="flimmer.css">
+</head>
+<body>
+  <div class="scene" onclick="document.querySelector('.karte').classList.toggle('is-flipped')">
+    <div class="karte">
+      <div class="seite vorderseite">
+        <img src="Logo.svg" alt="logo" style="width: clamp(100px, 25%, 160px); margin: 0 auto 1em; display: block;" />
+        <div class="name">Dietmar Broda</div>
+        <div class="titel">Digitale Kunst & Skulpturen</div>
+        <div class="kontakt">
+          <a href="#" onclick="event.stopPropagation(); parent.postMessage({ type: 'openForm' }, '*')">kon_takt@broda.at</a><br>
+          broda.at
+        </div>
+      </div>
+      <div class="seite rueckseite">
+        <div class="spalte links">
+          Text, Illustration<br>
+          Vectorgraphic, CAD<br>
+          Animation, UI/UX<br>
+          Luminous Bodies
+        </div>
+        <div class="spalte rechts">
+          Weigelsdorf 26<br>
+          4115 Kleinzell i.M.<br>
+          Austria<br>
+          +43 681 10383810
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

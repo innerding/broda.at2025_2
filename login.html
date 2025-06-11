@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    font-family: sans-serif;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(16px, 2vw, 22px);
+  }
+
+  .login-box {
+    background: rgba(34, 34, 34, 0.85); /* halbtransparentes Dunkelgrau */
+    padding: 2.5em;
+    border-radius: 12px;
+    width: clamp(300px, 40vw, 480px);
+    max-width: 90vw;
+    box-shadow: 0 0px 30px rgba(0,0,0,0.5);
+    text-align: center;
+    backdrop-filter: blur(4px); /* optional: weicher Unschärfeeffekt */
+  }
+
+  input {
+    width: 100%;
+    margin-bottom: 1em;
+    padding: 0.8em;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+  }
+
+  button {
+    padding: 0.7em 1.4em;
+    border: none;
+    border-radius: 6px;
+    background: #f90;
+    color: black;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  #loginError {
+    display: none;
+    color: red;
+    margin-top: 1em;
+  }
+
+  #successScreen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 123, 255, 0.85);
+    color: white;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+</style>
+<link rel="stylesheet" href="flimmer.css">
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login</h2>
+    <label for="username">Benutzername:</label><br>
+    <input type="text" id="username"><br>
+    <label for="password">Passwort:</label><br>
+    <input type="password" id="password"><br>
+    <button id="loginButton">Anmelden</button>
+    <p id="loginError">Falsche Anmeldedaten</p>
+  </div>
+
+  <div id="successScreen">Takt-Placeholder</div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('successScreen').style.display = 'none';
+      document.querySelector('.login-box').style.display = 'block';
+    });
+
+    document.getElementById('loginButton').addEventListener('click', function (e) {
+      e.preventDefault();
+      const rolle = document.getElementById('username').value.trim();
+      const pw = document.getElementById('password').value.trim();
+
+      const erlaubte = {
+        'Com': 'takt',
+        'Ope': 'takt',
+        'Acc': 'takt',
+        'Ord': 'takt',
+        'Cop': 'verstandtiefe',
+        'Sop': 'echoantwort'
+      };
+
+      console.log("Benutzer:", rolle, "Passwort:", pw);
+      console.log("Erwartet:", erlaubte[rolle]);
+
+      if (erlaubte.hasOwnProperty(rolle) && erlaubte[rolle] === pw) {
+        document.querySelector('.login-box').style.display = 'none';
+        document.getElementById('successScreen').style.display = 'flex';
+        window.parent.postMessage({ rolle, status: "success" }, "*");
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+        window.parent.postMessage({ status: "error" }, "*");
+      }
+    });
+  </script>
+</body>
+</html>
