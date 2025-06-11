@@ -1,44 +1,47 @@
 
 .flimmer-overlay {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  inset: 0; /* statt top/left/width/height */
+  background-color: rgba(0, 0, 0, 0.06); /* Fallback, falls der Gradient mal nicht lädt */
   background-image: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.06) 0px,
+    rgba(0, 0, 0, 0.06) 0,
     rgba(0, 0, 0, 0.06) 2px,
     transparent 2px,
     transparent 4px
   );
   animation: drift 4s ease-in-out infinite;
-  z-index: 1;
+  will-change: transform;           /* Browser hint für GPU-Acceleration */
+  backface-visibility: hidden;      /* zusätzliches Rendering-Boost */
   pointer-events: none;
+  z-index: 1;
 }
 
 .bernsteinlinie {
   position: fixed;
+  inset-inline: 0;                  /* links und rechts 0 */
   height: 1px;
-  width: 100%;
   background: rgba(255, 140, 0, 0.5);
-  top: -2px;
+  transform-origin: top center;     /* für die scaleY-Animation */
   animation: runter_zack_unten 4s linear infinite;
-  z-index: 2;
+  will-change: transform;
+  backface-visibility: hidden;
   pointer-events: none;
+  z-index: 2;
 }
 
 @keyframes drift {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(8px); }
   100% { transform: translateY(0); }
 }
 
 @keyframes runter_zack_unten {
-  0%   { top: -2px; transform: scaleY(1); }
-  70%  { transform: scaleY(1); }
-  75%  { transform: scaleY(3); }
-  80%  { transform: scaleY(0.6); }
-  85%  { transform: scaleY(1); }
-  100% { top: 100%; transform: scaleY(1); }
+  /* Top-Animation durch reine Transform ersetzen für bessere Performance */
+  0%  { transform: translateY(-2px) scaleY(1); }
+  70% { transform: translateY(calc(-2px + 0)) scaleY(1); }
+  75% { transform: translateY(calc(-2px + 0)) scaleY(3); }
+  80% { transform: translateY(calc(-2px + 0)) scaleY(0.6); }
+  85% { transform: translateY(calc(-2px + 0)) scaleY(1); }
+  100%{ transform: translateY(100vh)    scaleY(1); }
 }
