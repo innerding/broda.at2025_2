@@ -14,9 +14,10 @@
       width: 100vw;
       height: 100vh;
       z-index: 900;
-      pointer-events: auto;
-    }
-	.instrument {
+	  pointer-events: auto;
+  }
+
+  .instrument {
   position: absolute;
   border: none;
   z-index: 1000;
@@ -124,7 +125,11 @@
     box-shadow: none;
     z-index: 1000;
     pointer-events: none;
-  }
+	display: inline-flex;      /* als Flex-Container in einer Zeile */
+    flex-wrap: nowrap;         /* niemals umbrechen */
+    white-space: nowrap;       /* Textumbruch deaktivieren */
+    overflow-x: auto;          /* horizontal scrollen, wenn es zu eng wird */
+}
 </style>
 </head>
 <body>
@@ -269,7 +274,7 @@ if (isIPhone) {
     loginFrame.style.display = 'block';
   }
 });
-  
+
 </script>
 <!-- ganz unten in index.html -->
 <footer class="site-footer" style="font-family: 'Lora', serif; font-weight:700;">

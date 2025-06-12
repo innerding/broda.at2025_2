@@ -2,32 +2,41 @@
 .flimmer-overlay {
   position: fixed;
   inset: 0; /* statt top/left/width/height */
-  background-color: rgba(0, 0, 0, 0.06); /* Fallback, falls der Gradient mal nicht lädt */
+  background-color: #fff !important; /* Fallback, falls der Gradient mal nicht lädt */
   background-image: repeating-linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.06) 0,
     rgba(0, 0, 0, 0.06) 2px,
     transparent 2px,
     transparent 4px
-  );
-  animation: drift 4s ease-in-out infinite;
+  ) !important;
+  animation: drift 4s ease-in-out infinite both !important;
   will-change: transform;           /* Browser hint für GPU-Acceleration */
   backface-visibility: hidden;      /* zusätzliches Rendering-Boost */
   pointer-events: none;
   z-index: 1;
 }
-
+@keyframes drift {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(8px); }
+  100% { transform: translateY(0); }
+}
 .bernsteinlinie {
   position: fixed;
-  inset-inline: 0;                  /* links und rechts 0 */
+  inset-inline: 0;
   height: 1px;
   background: rgba(255, 140, 0, 0.5);
-  transform-origin: top center;     /* für die scaleY-Animation */
-  animation: runter_zack_unten 4s linear infinite;
+  transform-origin: top center;
   will-change: transform;
-  backface-visibility: hidden;
   pointer-events: none;
-  z-index: 2;
+  z-index: 901;               /* falls noch nötig, über Overlay legen */
+
+  /* sauber getrennte Animationseigenschaften: */
+  animation-name: runter_zack_unten;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: backwards;  /* ab jetzt valid */
 }
 
 @keyframes drift {
