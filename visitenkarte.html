@@ -127,6 +127,37 @@
     .spalte.rechts {
       text-align: right;
     }
+	.marker {
+  display: inline-block;
+  position: relative;
+}
+
+.marker::before {
+  content: '';
+  position: absolute;
+  left: -5%;   /* 5% breiter links */
+  right: -5%;  /* 5% breiter rechts = 10% breiter insgesamt */
+  top: 10%;    /* leicht zentrieren, optisch ggf. feinjustieren */
+  bottom: 10%;
+  background: linear-gradient(90deg, rgba(255,255,100,0.78) 85%, rgba(255,255,100,0.50) 100%);
+  border-radius: 0.22em;
+  filter: blur(0.2px);
+  z-index: 0;
+  pointer-events: none;
+  transform: rotate(-3deg); /* gegen Uhrzeigersinn */
+}
+
+.marker a {
+  position: relative;
+  z-index: 1;
+  color: #111 !important; /* jetzt schwarz */
+}
+
+.domain {
+  color: #111;
+  font-weight: 500;
+  margin-top: 0.12em;
+}
   </style>
 </head>
 <body>
@@ -137,9 +168,13 @@
         <div class="name">HUMAN INTERFACING</div>
         <div class="titel">Structure Explorations & Cybernetics</div>
         <div class="kontakt">
-          <a href="#" onclick="event.stopPropagation(); parent.postMessage({ type: 'openForm' }, '*')">kon_takt@broda.at</a><br>
-          broda.at
-        </div>
+  <span class="marker">
+    <a href="#" style="color:#111;" onclick="event.stopPropagation(); parent.postMessage({ type: 'openForm' }, '*')">
+      kon_takt@broda.at
+    </a>
+  </span>
+  <div class="domain">broda.at</div>
+</div>
       </div>
       <div class="seite rueckseite">
         <div class="spalte links">
