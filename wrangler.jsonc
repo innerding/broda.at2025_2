@@ -1,0 +1,22 @@
+{
+  "name": "broda-at",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-07-01",
+  "routes": [
+    {
+      "pattern": "broda.at",
+      "custom_domain": true
+    },
+    {
+      "pattern": "neu.broda.at",
+      "custom_domain": true
+    }
+  ],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  }
+  // Secret (wrangler secret put): MAPPE_SCHLUESSEL
+  //   Format: "wort:Empfänger,wort2:Empfänger2"
+  // Umschalten der Karte selbst: pattern "broda.at" ergänzen (siehe README).
+}

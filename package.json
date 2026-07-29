@@ -1,0 +1,17 @@
+{
+  "name": "broda-at",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "tsc --noEmit -p tsconfig.worker.json",
+    "dev": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260729.1",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.115.0"
+  }
+}

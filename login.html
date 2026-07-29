@@ -70,49 +70,42 @@
 </head>
 <body>
   <div class="login-box">
-    <h2>Login</h2>
-    <label for="username">Benutzername:</label><br>
-    <input type="text" id="username"><br>
-    <label for="password">Passwort:</label><br>
-    <input type="password" id="password"><br>
-    <button id="loginButton">Anmelden</button>
-    <p id="loginError">Falsche Anmeldedaten</p>
+    <h2>Mappe</h2>
+    <label for="password">Schlüssel:</label><br>
+    <input type="password" id="password" autocomplete="off"><br>
+    <button id="loginButton">Öffnen</button>
+    <p id="loginError">Dieser Schlüssel passt nicht</p>
   </div>
 
-  <div id="successScreen">Takt-Placeholder</div>
+  <div id="successScreen">Takt</div>
 
   <script>
+    // Die Prüfung liegt beim Worker (/api/tuer). Hier steht kein Schlüssel —
+    // was im Browser steht, kann jeder lesen.
     window.addEventListener('DOMContentLoaded', () => {
       document.getElementById('successScreen').style.display = 'none';
       document.querySelector('.login-box').style.display = 'block';
     });
 
-    document.getElementById('loginButton').addEventListener('click', function (e) {
-      e.preventDefault();
-      const rolle = document.getElementById('username').value.trim();
-      const pw = document.getElementById('password').value.trim();
+    async function oeffnen() {
+      const wort = document.getElementById('password').value.trim();
+      if (!wort) return;
+      try {
+        const antwort = await fetch('/api/tuer?k=' + encodeURIComponent(wort));
+        if (antwort.ok) {
+          document.querySelector('.login-box').style.display = 'none';
+          document.getElementById('successScreen').style.display = 'flex';
+          window.parent.postMessage({ status: "success" }, "*");
+          location.href = '/mappe?k=' + encodeURIComponent(wort);
+          return;
+        }
+      } catch (e) { /* keine Verbindung — wie ein falscher Schlüssel behandeln */ }
+      document.getElementById('loginError').style.display = 'block';
+      window.parent.postMessage({ status: "error" }, "*");
+    }
 
-      const erlaubte = {
-        'Com': 'takt',
-        'Ope': 'takt',
-        'Acc': 'takt',
-        'Ord': 'takt',
-        'Cop': 'verstandtiefe',
-        'Sop': 'echoantwort'
-      };
-
-      console.log("Benutzer:", rolle, "Passwort:", pw);
-      console.log("Erwartet:", erlaubte[rolle]);
-
-      if (erlaubte.hasOwnProperty(rolle) && erlaubte[rolle] === pw) {
-        document.querySelector('.login-box').style.display = 'none';
-        document.getElementById('successScreen').style.display = 'flex';
-        window.parent.postMessage({ rolle, status: "success" }, "*");
-      } else {
-        document.getElementById('loginError').style.display = 'block';
-        window.parent.postMessage({ status: "error" }, "*");
-      }
-    });
+    document.getElementById('loginButton').addEventListener('click', (e) => { e.preventDefault(); oeffnen(); });
+    document.getElementById('password').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); oeffnen(); } });
   </script>
 </body>
 </html>
