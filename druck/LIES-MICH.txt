@@ -1,0 +1,14 @@
+Visitenkarten für den Schwarzweiss-Drucker
+
+visitenkarten-a4.html ist der Nutzen: zehn Karten 85 x 55 mm auf A4, Seite 1 die Vorderseiten, Seite 2 die
+Rückseiten. Ändert sich die Karte auf broda.at, wird der Text hier von Hand nachgezogen.
+
+Das PDF neu erzeugen:
+
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer \
+  --print-to-pdf=druck/visitenkarten-a4.pdf "file://$PWD/druck/visitenkarten-a4.html"
+
+Drucken: in tatsächlicher Grösse (100 %), nicht an die Seite anpassen. Beidseitig: wenden an der langen Kante.
+Schneiden: an den Marken im Rand. Das Gelb hinter der E-Mail-Adresse kommt von Hand dazu.
+
+Ausgeliefert wird dieser Ordner nicht; build.mjs nimmt nur seine Liste.
