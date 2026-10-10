@@ -1,14 +1,36 @@
 Visitenkarten für den Schwarzweiss-Drucker
 
-visitenkarten-a4.html ist der Nutzen: zehn Karten 85 x 55 mm auf A4, Seite 1 die Vorderseiten, Seite 2 die
-Rückseiten. Ändert sich die Karte auf broda.at, wird der Text hier von Hand nachgezogen.
+DIE KLAPPKARTE (seit dem 10.10.2026)
 
-Das PDF neu erzeugen:
+Vier Seiten, fünf Karten je A4-Blatt, offen 170 x 55 mm, gefaltet 85 x 55 mm. Aussen vorne die Karte von broda.at,
+aussen hinten Name und Anschrift, innen links der Bildschirm mit dem Zeichen von o-o-o-o und der Adresse der
+Einladung, innen rechts das Handy mit dem QR der Ziel-App.
 
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer \
-  --print-to-pdf=druck/visitenkarten-a4.pdf "file://$PWD/druck/visitenkarten-a4.html"
+Jede Karte trägt ihre eigene Einladung in die Show. Darum ist jedes Blatt ein Einzelstück, und darum liegt es nicht
+im Repo: Das Repo ist öffentlich, und ein Code ist eine Tür. Liste und Blatt stehen in druck/einzeln/, der Ordner
+ist in .gitignore ausgenommen.
+
+Der Weg, jedes Mal:
+
+1. Codes würfeln:    node druck/klappkarten-bauen.mjs wuerfeln 20 "Invest or Die - Karte"
+   Das schreibt druck/einzeln/karten.txt und druck/einzeln/secart-zeilen.txt. In karten.txt gehört dazu die Zeile
+   "ziel: <Adresse der Ziel-App>" für den QR im Handy; eine vorhandene wandert mit.
+2. Die Zeilen aus secart-zeilen.txt in Secart unter "mehrere auf einmal" einfügen. Erst dann gelten die Codes.
+3. Das Blatt bauen:  node druck/klappkarten-bauen.mjs
+4. Das PDF:
+   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer \
+     --print-to-pdf=druck/einzeln/klappkarten-a4.pdf "file://$PWD/druck/einzeln/klappkarten-a4.html"
 
 Drucken: in tatsächlicher Grösse (100 %), nicht an die Seite anpassen. Beidseitig: wenden an der langen Kante.
-Schneiden: an den Marken im Rand. Das Gelb hinter der E-Mail-Adresse kommt von Hand dazu.
+Die ungeraden Seiten des PDF sind aussen, die geraden innen. Papier ab etwa 160 g.
+Schneiden: an den durchgezogenen Marken im Rand. Falzen: an der gestrichelten Marke in der Blattmitte, vorher rillen.
+Das Gelb hinter der E-Mail-Adresse kommt von Hand dazu.
+
+Der QR wird mit dem Paket qrcode gerechnet, das im Repo von Secart liegt (SCIM3ClaudeMax/scim_source/node_modules).
+
+DIE ALTE KARTE, ZWEISEITIG
+
+visitenkarten-a4.html ist der frühere Nutzen: zehn Karten 85 x 55 mm auf A4, Seite 1 die Vorderseiten, Seite 2 die
+Rückseiten. Er trägt noch die Vorderseite vom Vormittag des 10.10.2026 und ist nicht nachgezogen.
 
 Ausgeliefert wird dieser Ordner nicht; build.mjs nimmt nur seine Liste.

@@ -97,15 +97,15 @@
       font-family: 'Polarstern', system-ui, sans-serif;
       /* Klein geschrieben geht nur bis 500: Der fette Schnitt (600) hat nur Grossbuchstaben. */
       font-weight: 500;
-      font-size: 1.7em;
+      font-size: 1.44em;
       white-space: nowrap;
       margin-bottom: 0.0em;
       text-align: center;
     }
 
     .titel {    
-      font-size: clamp(1.2em, 2.5vw, 1.8em);
-      margin-bottom: 1.1em;
+      font-size: 1.3em;
+      margin-bottom: 1.0em;
       text-align: center;
     }
 
@@ -122,6 +122,11 @@
       font-weight: 400;
       display: inline-block;
       transition: transform 0.2s ease;
+    }
+
+    /* Das @ steht frei: vor und nach ihm etwas Luft. */
+    .kontakt a .at {
+      margin: 0 0.12em;
     }
 
     /* Nur der Name der Adresse ist fester gesetzt. */
@@ -185,12 +190,12 @@
     <div class="karte">
       <div class="seite vorderseite">
         <svg class="bildmarke" xmlns="http://www.w3.org/2000/svg" viewBox="4 3 16 16.6" aria-hidden="true"><path fill="#000" d="M4.689,17.189l-.108-6.447c-.008-.456.198-.887.551-1.153l6.353-4.781c.22-.166.528-.087.652.166l2.084,4.268c.108.221.032.493-.173.617l-5.202,3.149c-.16.097-.245.289-.215.48.03.178.154.321.318.368.043.017.089.026.136.028l4.934.945c.212.041.365.236.364.462l-.027,3.973c-.002.297-.265.517-.54.452l-8.78-2.081c-.199-.047-.342-.232-.346-.447ZM15.262,15.148l-.024,3.466c-.003.41.442.647.754.401l3.043-2.391c.11-.087.179-.22.188-.365l.194-3.054c.014-.228-.21-.387-.405-.287l-3.485,1.786c-.161.083-.264.254-.265.443ZM13.037,4.793l2.049,4.195c.076.155.247.23.405.178l3.151-1.048c.2-.066.295-.305.201-.502l-1.501-3.128c-.058-.12-.174-.196-.302-.196l-3.699-.019c-.255-.001-.421.282-.304.521Z"/></svg>
-        <div class="name">human-centered design</div>
-        <div class="titel">Reflective Operating Systems</div>
+        <div class="name">Reflective Operating Systems</div>
+        <div class="titel">human-centered design</div>
         <div class="kontakt">
   <span class="marker">
     <a href="#" style="color:#111;" onclick="event.stopPropagation(); parent.postMessage({ type: 'openForm' }, '*')">
-      kontakt@<span class="fest">broda.at</span>
+      kontakt<span class="at">@</span><span class="fest">broda.at</span>
     </a>
   </span>
 </div>
