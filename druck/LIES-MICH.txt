@@ -6,27 +6,16 @@ Vier Seiten, fünf Karten je A4-Blatt, offen 170 x 55 mm, gefaltet 85 x 55 mm. A
 aussen hinten Name und Anschrift, innen links der Bildschirm mit dem Zeichen von o-o-o-o und der Adresse der
 Einladung, innen rechts das Handy mit dem QR der Ziel-App.
 
-Jede Karte trägt ihre eigene Einladung in die Show. Darum ist jedes Blatt ein Einzelstück, und darum liegt es nicht
-im Repo: Das Repo ist öffentlich, und ein Code ist eine Tür. Liste und Blatt stehen in druck/einzeln/, der Ordner
-ist in .gitignore ausgenommen.
-
-Der Weg, jedes Mal:
-
-1. Codes würfeln:    node druck/klappkarten-bauen.mjs wuerfeln 20 "Invest or Die - Karte"
-   Das schreibt druck/einzeln/karten.txt und druck/einzeln/secart-zeilen.txt. In karten.txt gehört dazu die Zeile
-   "ziel: <Adresse der Ziel-App>" für den QR im Handy; eine vorhandene wandert mit.
-2. Die Zeilen aus secart-zeilen.txt in Secart unter "mehrere auf einmal" einfügen. Erst dann gelten die Codes.
-3. Das Blatt bauen:  node druck/klappkarten-bauen.mjs
-4. Das PDF:
-   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer \
-     --print-to-pdf=druck/einzeln/klappkarten-a4.pdf "file://$PWD/druck/einzeln/klappkarten-a4.html"
+Die Klappkarte entsteht nicht hier, sondern in Secart: Abteilung Zugang-Give-Away. Dort werden die Codes gewürfelt,
+und der Knopf "Blatt zum Drucken" baut das Blatt aus den Karten. Jede Karte trägt ihre eigene Einladung in die Show;
+darum liegt hier weder eine Liste noch ein Blatt. Die Zeichnung der Karte steht im Repo von Secart
+(scim_source, src/scim/ui/panels/klappkarte.ts). Ändert sich die Vorderseite der Karte auf broda.at, wird sie dort
+von Hand nachgezogen.
 
 Drucken: in tatsächlicher Grösse (100 %), nicht an die Seite anpassen. Beidseitig: wenden an der langen Kante.
-Die ungeraden Seiten des PDF sind aussen, die geraden innen. Papier ab etwa 160 g.
+Die ungeraden Seiten sind aussen, die geraden innen. Papier ab etwa 160 g.
 Schneiden: an den durchgezogenen Marken im Rand. Falzen: an der gestrichelten Marke in der Blattmitte, vorher rillen.
 Das Gelb hinter der E-Mail-Adresse kommt von Hand dazu.
-
-Der QR wird mit dem Paket qrcode gerechnet, das im Repo von Secart liegt (SCIM3ClaudeMax/scim_source/node_modules).
 
 DIE ALTE KARTE, ZWEISEITIG
 
