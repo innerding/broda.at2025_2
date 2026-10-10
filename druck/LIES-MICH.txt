@@ -2,7 +2,8 @@ Visitenkarten für den Schwarzweiss-Drucker
 
 DIE KLAPPKARTE (seit dem 10.10.2026)
 
-Vier Seiten, fünf Karten je A4-Blatt, offen 170 x 55 mm, gefaltet 85 x 55 mm. Aussen vorne die Karte von broda.at,
+Vier Seiten, vier Karten je A4-Blatt, offen 170 x 55 mm, gefaltet 85 x 55 mm. (Vier und nicht fünf: Der Drucker
+bedruckt die untersten 14,5 mm des Blatts nicht.) Aussen vorne die Karte von broda.at,
 aussen hinten Name und Anschrift, innen links der Bildschirm mit dem Zeichen von o-o-o-o und der Adresse der
 Einladung, innen rechts das Handy mit dem QR der Ziel-App.
 
