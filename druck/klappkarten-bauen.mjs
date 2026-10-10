@@ -29,8 +29,8 @@
  *
  * ⚠ DIE CODES WERDEN GETIPPT, NICHT GESCANNT. Darum würfelt dieses Skript aus den Zeichen, die sich in der Polarstern
  * nicht verwechseln lassen, und nicht aus allen, die Secart nimmt: Ihr p liest sich wie ein n mit Unterlänge, q wie
- * ein a, r wie ein t, c trägt einen Haken; 5 steht nah am s, 6 am b, 9 am g, z an der 2, v am u (am Bild der Schrift
- * angesehen, 10.10.2026). Es bleiben 21 Zeichen, acht je Code. Das Würfeln schreibt zwei Dateien nach
+ * ein a, r wie ein t, c trägt einen Haken; 5 steht nah am s, 6 am b, 9 am g, z an der 2, v am u, und das j gleicht
+ * einem i (am Bild der Schrift angesehen, 10.10.2026). Zehn Zeichen fallen weg, es bleiben 21, acht je Code. Das Würfeln schreibt zwei Dateien nach
  * `druck/einzeln/`: `karten.txt` für dieses Skript und `secart-zeilen.txt` zum Einfügen in Secart — erst dort werden
  * aus Codes Einladungen. Eine Liste, die schon Karten trägt, wird vorher unter ihrem Datum beiseitegelegt.
  *
